@@ -3,6 +3,7 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	concat = require('gulp-concat'),
 	less = require('gulp-less'),
+	minifyCSS = require('gulp-minify-css'),
 	path = require('path'),
 	coffee = require('gulp-coffee'),
 	livereload = require('gulp-livereload'),
@@ -57,7 +58,7 @@ gulp.task('compile', function(){ /*Name of the task is 'compile' */
 /*Task2.5 - Create a process task to concat and minify all the css into the css folder*/
 gulp.task('process', function(){
 	gulp.src(cssSources)
-	// .pipe(uglify())
+	.pipe(minifyCSS({keepBreaks:true}))
 	.pipe(concat('styles.css'))
 	.pipe(gulp.dest('css'))
 });/*end of the process task function*/
